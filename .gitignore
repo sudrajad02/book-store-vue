@@ -1,0 +1,6 @@
+fe-vue/node_modules/
+fe-vue/package-lock.json
+fe-vue/npm-debug.log
+backend/node_modules/
+backend/package-lock.json
+backend/npm-debug.log
