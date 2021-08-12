@@ -6,20 +6,22 @@
             <h5>Tambah Buku</h5>
             <hr />
             <form class="form-row" @submit.prevent="submitAdd">
-                <div class="col-3">
-                    <input type="text" class="form-control mx-2" placeholder="Judul" v-model="newBook.judul">
-                </div>
-                <div class="col-3">
-                    <input type="text" class="form-control mx-2" placeholder="Pengarang" v-model="newBook.pengarang">
-                </div>
-                <div class="col-2">
-                    <input type="text" class="form-control mx-2" placeholder="Harga" v-model="newBook.harga">
-                </div>
-                <div class="col-2">
-                    <input type="number" class="form-control mx-2" placeholder="Stok" v-model="newBook.stok">
-                </div>
-                <div class="col-2">
-                    <input type="submit" class="btn btn-primary ml-5" value="Simpan">
+                <div class="row">
+                    <div class="col-3">
+                        <input type="text" class="form-control mx-2" placeholder="Judul" v-model="newBook.judul">
+                    </div>
+                    <div class="col-3">
+                        <input type="text" class="form-control mx-2" placeholder="Pengarang" v-model="newBook.pengarang">
+                    </div>
+                    <div class="col-2">
+                        <input type="text" class="form-control mx-2" placeholder="Harga" v-model="newBook.harga">
+                    </div>
+                    <div class="col-2">
+                        <input type="number" class="form-control mx-2" placeholder="Stok" v-model="newBook.stok">
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" class="btn btn-primary ml-5" value="Simpan">
+                    </div>
                 </div>
             </form>
         </div>
@@ -28,20 +30,22 @@
             <h5>Ubah Buku</h5>
             <hr />
             <form class="form-row" @submit.prevent="submitChange">
-                <div class="col-3">
-                    <input type="text" class="form-control mx-2" placeholder="Judul" v-model="updatedBook.judul">
-                </div>
-                <div class="col-3">
-                    <input type="text" class="form-control mx-2" placeholder="Pengarang" v-model="updatedBook.pengarang">
-                </div>
-                <div  class="col-2">
-                    <input type="text" class="form-control mx-2" placeholder="Harga" v-model="updatedBook.harga">
-                </div>
-                <div class="col-2">
-                    <input type="number" class="form-control mx-2" placeholder="Stok" v-model="updatedBook.stok">
-                </div>
-                <div class="col-2">
-                    <input type="submit" class="btn btn-warning ml-5" value="Ubah">
+                <div class="row">
+                    <div class="col-3">
+                        <input type="text" class="form-control mx-2" placeholder="Judul" v-model="updatedBook.judul">
+                    </div>
+                    <div class="col-3">
+                        <input type="text" class="form-control mx-2" placeholder="Pengarang" v-model="updatedBook.pengarang">
+                    </div>
+                    <div  class="col-2">
+                        <input type="text" class="form-control mx-2" placeholder="Harga" v-model="updatedBook.harga">
+                    </div>
+                    <div class="col-2">
+                        <input type="number" class="form-control mx-2" placeholder="Stok" v-model="updatedBook.stok">
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" class="btn btn-warning ml-5" value="Ubah">
+                    </div>
                 </div>
             </form>
         </div>
@@ -104,7 +108,7 @@ export default {
             this.formMode = "edit";
             this.bookIndex = index;
 
-            this.updatedBook._id = book._id;
+            this.updatedBook.id = book.id;
             this.updatedBook.judul = book.judul;
             this.updatedBook.pengarang = book.pengarang;
             this.updatedBook.harga = book.harga;
@@ -115,10 +119,6 @@ export default {
             const bookChange = this.updatedBook;
 
             this.$emit("update", bookChange, this.bookIndex);
-            // this.newBook.judul = "";
-            // this.newBook.pengarang = "";
-            // this.newBook.harga = "";
-            // this.newBook.stok = "";
             this.formMode = "";
         },
 

@@ -5,6 +5,7 @@
 
 <script>
 import Navbar from './components/Navbar.vue'
+import axios from "axios";
 
 export default {
   name: 'App',
@@ -13,27 +14,51 @@ export default {
   },
   data() {
     return {
-      booksData: [
-        { _id: 1, judul: "Laskar Pelangi", pengarang: "Andrea Hirata", harga: 80000, stok: 7 },
-        { _id: 2, judul: "Bumi", pengarang: "Tere Liye", harga: 85000, stok: 5   },
-      ]
-    };
+      booksData: []
+    }
+  },
+  mounted() {
+    this.getData();
   },
   methods: {
+    getData() {
+      axios.get('http://localhost:10000/book').then(res => {
+        this.booksData = res.data.data
+      }).catch ((err) => {
+        console.log(err);
+      })
+    },
+
     storeData(bookCreated) {
-      console.log(bookCreated);
-      alert("Data berhasil ditambahkan!");
+      axios.post('http://localhost:10000/book/new', bookCreated).then(res => {
+        console.log(res);
+        this.getData();
+        alert("Data berhasil ditambahkan!");
+      }).catch ((err) => {
+        console.log(err);
+      })
     },
 
-    updateData(bookChange, bookIndex) {
-      console.log(bookChange, bookIndex);
-      alert("Data berhasil diubah!");
+    updateData(bookChange) {
+      axios.post('http://localhost:10000/book/update/' + bookChange.id, bookChange).then(res => {
+        console.log(res);
+        this.getData();
+        alert("Data berhasil diubah!");
+      }).catch ((err) => {
+        console.log(err);
+      })
     },
 
-    deleteData(book, index) {
-      console.log(book);
-      console.log(index);
-      alert("Data berhasil dihapus!")
+    deleteData(book) {
+      console.log(book.id);
+      axios.delete('http://localhost:10000/book/delete/' + book.id).then(res => {
+        console.log(res);
+        this.getData();
+        alert("Data berhasil dihapus!")
+      }).catch ((err) => {
+        console.log(err);
+      })
+      
     }
   }
 }
